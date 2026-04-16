@@ -1,0 +1,84 @@
+<%- include ('parts/header')%>
+<%- include ('parts/navbar')%>
+
+
+<link rel="stylesheet" href="/product.css">
+
+
+
+
+<div class="container">
+   <% if (!product) { %> 
+
+    <div class="alert alert-danger ">
+        There is no Product
+
+        <!-- Produit n'exsiste pas
+-->
+    </div>
+
+    <%  } else { %>
+        <div class="row">
+            <div class="col col-12 col-md-6"> 
+                <% if(  validationError ){ %>
+                    <p class="alert alert-danger">
+                      <%= validationError.msg %>
+                    </p>
+                    <% } %>
+                    <div class="card">
+
+
+              <img src="/<%=product.image %>" alt=""> 
+                    </div>
+             <div class="card">
+                <div class="card-body">
+                    <form action="/cart" method="POST">
+                        <input type="number" name = "amount"  class="form-control" placeholder="Number of item">
+                        <input type="hidden" name="name" value="<%= product.name %>">
+                        <input type="hidden" name="price" value="<%= product.price %>">
+                        <input type="hidden" name="productId" value="<%= product._id%>">
+                        <input type="hidden" name="redirectTo" value="/product/<%= product._id%>">
+                        <input type="submit" value ="Add to cart" class="btn btn-primary">     
+
+
+  
+                </form>
+                </div>
+
+             </div>
+                       
+               
+
+            </div>
+            <!-- <div class="col-md-4 py-3 py-md-0"> -->
+                <div class="col col-12 col-md-6"> 
+
+               
+                <div class="card ">
+                    <div class="card-body">
+
+                        <h1><span><%=product.name %></span> </h1>
+                        <h6>               <i class="fa fa-list-alt"></i>
+
+                            <%= product.category %></h6>
+
+                        
+                        <h2>Price:<strong><%= product.price %> Dt</strong> </h2> 
+
+                                            
+
+                        <p>
+                            <strong > Details about <%=product.name %>:</strong> <br>
+                            <%= product.description %> </p>
+            
+                    </div>
+                </div>
+               
+             
+            </div>
+        </div>
+        <% } %>
+</div>
+
+
+<%-include ('parts/footer')%>

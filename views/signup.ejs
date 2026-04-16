@@ -1,0 +1,54 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+<link rel="stylesheet" href="/signup.css">
+
+
+<div class="container text-center">
+    <h1>Create Account </h1>
+    <form action="/signup" method="POST">
+    <input type="text" class="form-control" name="username" placeholder="username" autocomplete="on">
+    <% let UsernameErrors = validationErrors.find(err => err.param === 'username') %>
+    <% if (UsernameErrors) { %>
+        <p class="alert alert-danger">
+            <%= UsernameErrors.msg %>
+        </p>
+       
+
+    <%} %>
+    <input type="email" class="form-control" name="email" placeholder="email" autocomplete="on">
+    <% let EmailErrors = validationErrors.find(err => err.param === 'email') %>
+    <% if (EmailErrors) { %>
+        <p class="alert alert-danger">
+            <%= EmailErrors.msg %>
+        </p>
+    <%} %>
+    <input type="password" class="form-control" name="password" placeholder="password" autocomplete="on">
+    <% let passwordErrors = validationErrors.find(err => err.param === 'password') %>
+    <% if (passwordErrors ) { %>
+        <p class="alert alert-danger">
+            <%= passwordErrors.msg %>
+        </p>
+    <%} %>
+    <input type="password" class="form-control" name="confirm password" placeholder="confirm password" autocomplete="on">
+    <% let confirmpassword = validationErrors.find(err => err.param === 'confirm password') %>
+    <% if (confirmpassword) { %>
+        <p class="alert alert-danger">
+            <%= confirmpassword.msg %>
+        </p>
+    <%} %>
+    <input type="submit" value="Create Account " class="btn btn-primary">
+
+
+
+</form>
+
+
+<div>
+    Already have  account ? <a href="/login"> Login</a>
+</div>
+</div>
+
+
+
+<%- include('parts/footer') %>

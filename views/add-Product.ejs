@@ -1,0 +1,74 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+
+<link rel="stylesheet" href="/add_Product.css">
+
+
+<div class="container text-center">
+    <h1>Add Product</h1>
+    <form action="/admin/add" method="POST" enctype="multipart/form-data">
+    
+        <input type="text" class="form-control" name="name" placeholder="name">
+    <% let nameErrors = validationErrors.find(err => err.param === 'name') %>
+    <% if (nameErrors) { %>
+        <p class="alert alert-danger">
+            <%- nameErrors.msg %>
+        </p>
+    <% } %>
+
+    <input type="number" class="form-control" name="price" placeholder="price">
+    <% let priceErrors = validationErrors.find(err => err.param === 'price') %>
+    <% if (priceErrors) { %>
+        <p class="alert alert-danger">
+            <%- priceErrors.msg %>
+        </p>
+    <% } %>
+    <input type="text" class="form-control" name="description" placeholder="description">
+    <% let descriptionErrors =  validationErrors.find(err => err.param === 'description') %>
+    <% if (descriptionErrors) { %>
+        <p class="alert alert-danger">
+            <%- descriptionErrors.msg %>
+        </p>
+    <% } %>
+   
+       
+        <select  name="category" class="form-control" placeholder="category">
+          <option value="" selected> choose a category </option>
+          <option value="Clothes">Clothes </option>
+          <option value="Bikes"> Bikes </option>
+          <option value="Cars"> Cars </option>
+          <option value="Flowers">Flowers</option>
+          <option value="Laptops">Laptops</option>
+</select>
+<% let categoryErrors = validationErrors.find(err => err.param === 'category') %>
+          <% if (categoryErrors) { %>
+              <p class="alert alert-danger">
+                  <%- categoryErrors.msg %>
+              </p>
+          <% } %>
+
+
+
+          
+<input type="file" class="form-control" id="image" name="image">
+    <% let imageErrors = validationErrors.find(err => err.param === 'image') %>
+          <% if (imageErrors) { %>
+              <p class="alert alert-danger">
+                  <%- imageErrors.msg %>
+              </p>
+          <% } %>
+          
+    <input type="submit" value="add Product " class="btn btn-primary">
+
+
+
+</form>
+
+
+
+</div>
+
+
+
+<%- include('parts/footer') %>

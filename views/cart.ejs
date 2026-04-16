@@ -1,0 +1,107 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+
+<link rel="stylesheet" href="/cart.css">
+
+
+<div class="cart-container">
+<% if(items.length === 0) { %>
+    <p class="alert alert-danger"> There are no articles </p>
+
+<% } else {  %>
+
+    <table class="table">
+        <thead>
+
+            <th>N°</th>
+     
+
+
+            <th>Product Name</th>
+
+            <th>Price</th>
+
+            <th>Number of Items</th>
+
+            <th>Total</th>
+
+            <th></th>
+
+            <th></th>
+
+
+</thead>
+    <tbody>
+        <% if(  validationError ){ %>
+            <p class="alert alert-danger">
+              <%= validationError.msg %>
+            </p>
+            <% } %>
+       
+
+      <%  for ( let i = 0 ; i< items.length ;  i++) {  %>
+        
+
+        
+        <tr>
+            <form  method="POST">
+
+
+    <td data-label="N°"> <%= i+1 %> </td>
+        
+
+
+    <td data-label="Product Name">
+         <a href="/product/<%= items[i].productId %>"> 
+            <%= items[i].name %></a>
+         </td>
+    <td data-label="Price"> <%= items[i].price %> Dt </td>
+               
+    <td data-label="Number of Items"> 
+        <input type="text" name = "amount"  class="form-control" value="<%=items[i].amount  %> " > 
+    </td>
+    <td data-label="Total"> 
+        <%= items[i].price * items[i].amount %> Dt 
+    </td>
+
+
+               
+<td>
+    <input type="hidden" name="cardId" value="<%= items[i]._id %>" >
+    <input type="submit"  class="btn btn-success"   value ="Save" formaction="/cart/save" >
+    <input type="submit"  class="btn btn-danger"   value ="Delete" formaction="/cart/delete">
+    <!-- <input type="submit"  class="btn btn-danger"   value ="Delete All" formaction="/cart/deleteAll"> -->
+
+</td>
+            </form>
+            <!-- </form>   -->
+            <td>
+                  
+                <form action="/orders" method="POST">
+                      
+                        <!--  <form action="/orders" method="GET">-->
+                            <input type="hidden" name="name" value="<%= items[i].name %>">
+                            <input type="hidden" name = "amount"   value="<%=items[i].amount  %>">
+                            <input type="hidden" name="price" value="<%=items[i].price  %>">
+                            <input type="hidden" name="total" value="<%= items[i].price * items[i].amount %>">
+
+                            <input type="hidden" name="productId" value="<%= items[i]._id%>">
+                            <input type="submit"  class="btn btn-success"   value ="Validate"  >           
+    
+    
+      
+                     </form> 
+
+
+                </td>
+    
+        </tr>            
+
+        <% } %>
+    </tbody>
+    </table>
+    <% } %>
+</div>
+
+<%- include('parts/footer') %>

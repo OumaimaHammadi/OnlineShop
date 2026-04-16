@@ -1,0 +1,155 @@
+<%- include('parts/header') %>
+<%- include('parts/navbar') %>
+
+
+<link rel="stylesheet" href="/orders.css">
+
+
+
+<div class="orders-container">
+    <% if( orders.length === 0) { %>
+        <p class="alert alert-danger"> There are no orders </p>
+        <% } else {  %>
+
+          <table class="table">
+            <thead>
+        <th> Number</th>
+        <th> Name</th> 
+        <th> Email</th> 
+
+
+        <th> Product Name</th> 
+        <th> Price/Item</th>
+        <th> Number of Articles </th>
+        <th> Total</th>
+        <th> Address</th>
+        <th> Statut </th>
+        <th> Time </th>
+        <th>      </th>
+        <th></th>
+
+
+    </thead>
+        <tbody>
+
+            <% if(  validationError ){ %>
+            <p class="alert alert-danger">
+            <%= validationError.msg %>
+            </p>
+            <% } %>
+
+<%  for ( let i = 0 ; i< orders.length ;  i++) {   %>
+    <form  method="POST" >
+
+    <tr>
+      <td data-label="N°"> <%= i+1 %> </td>
+        <td name="Username" ><%= orders[i].username %> </td>
+       
+
+        <td name="Email" ><%= orders[i].email %></td>
+
+
+      <td data-label="Nom Produit"> <%= orders[i].name %> </td>
+
+    <td data-label="Prix/Article"> <%= orders[i].price %> DT</td>
+
+    <td data-label=" Nombre d'Articles">
+      <input type="text"   name = "amount" class="form-control" value="<%=orders[i].amount %>">
+    </td>
+
+    <td data-label="Coût">
+         
+
+        <input type="hidden" name = "total"   value="<%= orders[i].price * orders[i].amount %>">
+        <%= orders[i].price * orders[i].amount %> Dt 
+
+
+    </td>
+
+
+  
+
+    <td data-label="Adresse">
+      <input type="text" name = "addresse"  class="form-control" value="<%=orders[i].addresse %>">
+    </td>
+
+
+
+    <td data-label="Statut"> 
+
+      <%=orders[i].status %>
+
+   <!--    <select name="status" class="form-control-left">
+    <option value="Pending"   <%= orders[i].status === "Pending" ? "selected" : "" %>> Pending</option>
+    <option value="Sent"   <%= orders[i].status === "Sent" ? "selected" : "" %>>Sent</option>
+    <option value="Received"  <%= orders[i].status === "Received" ? "selected" : "" %>>  Received</option>
+</select> -->
+
+  <!-- <select  name="status"  class="form-control-left"   value=" <%=orders[i].status %> ">
+      
+              
+             <option value="Status"> <%=orders[i].status %> </option>              
+            <option value="Pending">  Pending</option>
+            <option value="Waiting">Waiting</option>
+            <option value="Received">  Received</option>
+          </select>  -->
+
+
+
+            
+    </td>
+
+ 
+
+
+
+
+<td data-label="Temps">
+   <%= new Date(Number(orders[i].timestamp)).toLocaleString('fr-FR') %>
+
+
+
+      <!-- <%=orders[i].timestamp  %> -->
+      <!-- <input type="text" name = "timestamp"  class="form-control" value="<%=orders[i].timestamp  %>"> -->
+    </td>
+  
+
+  <td>
+    
+    <div class="boutons">
+      <input type="hidden" name="OrderId" value="<%= orders[i]._id %>" >
+      <input type="submit"  class="btn btn-success"   value ="save" formaction="/orders/save" >
+      <input type="submit"  class="btn btn-danger"   value ="cancel" formaction="/orders/cancel" >
+
+    </div>
+
+
+
+
+  </td>
+  <td>
+     <div class="boutons">
+      <input type="submit"  class="btn btn-success"   value ="order" formaction="/orders/thanks" >
+
+    </div>
+  </td>
+</tr>
+
+</form>      
+
+
+
+<% } %>
+
+
+
+</tbody>
+</table>
+
+
+
+<% } %>
+</div>
+
+
+<%- include('parts/footer') %>
