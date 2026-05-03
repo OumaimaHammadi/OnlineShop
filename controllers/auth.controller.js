@@ -62,10 +62,17 @@ exports.postlogin = (req,res,next) => {
 
        
     authModel.login(req.body.email,req.body.password).then((result) =>{
+                    console.log('result of login: ',result);
+
     
-        req.session.userId =result.id
+        req.session.userId =result.id,
+        req.session.username=result.username
+
         req.session.isAdmin=result.isAdmin
-        res.redirect('/')
+        
+        req.session.save(() => {
+    res.redirect('/')
+})
     }).catch(err =>{
    
      req.flash('authError',err)

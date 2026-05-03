@@ -1,8 +1,8 @@
 const mongoose =require('mongoose')
 const bcrypt =require('bcrypt')
 //const DB_url ='mongodb://localhost:27017/online-shop'
-//const DB_URL='mongodb://127.0.0.1:27017/online-shop'
-const DB_URL='mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net/'
+const DB_URL='mongodb://127.0.0.1:27017/online-shop'
+// const DB_URL='mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net/'
 
 
 
@@ -80,6 +80,8 @@ bcrypt.compare(password,user.password).then(same =>{
         mongoose.disconnect()
         resolve({
             id:user._id ,
+                        username: user.username,
+
             isAdmin:user.isAdmin
         })
 

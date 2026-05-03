@@ -30,8 +30,8 @@ app.use(flash())
 
 const STORE = new StoreSession({
      //uri :'mongodb://localhost:27017/online-shop',
-   //uri :'mongodb://127.0.0.1:27017/online-shop',
-uri:'mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net/',
+   uri :'mongodb://127.0.0.1:27017/online-shop',
+// uri:'mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net/',
 
    
     collection :'sessions'
@@ -40,7 +40,7 @@ uri:'mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net
 
 app.use(session({
     secret:'this is my secret to hash express session ....',
-    saveUninitialized :true,
+    saveUninitialized :false,
     resave: false,
     store:STORE 
 }))
@@ -49,6 +49,11 @@ app.use(session({
 
 app.set('view engine','ejs')
 app.set('views','views') //default
+app.use((req, res, next) => {
+   
+     UserName=req.session.username
+    next()
+})
 
 app.use('/', homeRouter)
 app.use('/', authRouter )
@@ -93,8 +98,8 @@ app.get('/not-admin',(req,res,next)=>{
 })
 
 
-app.listen(8000,(err)=>{
+app.listen(8100,(err)=>{
 
-    console.log('Server is 6000 okk')
+    console.log('Server is 8100 okk')
 
 })

@@ -29,7 +29,7 @@ exports.getProductByid =(req,res,next) => {
     ProductModel.getProductById(id).then((product) =>{
     res.render('product',{
         product : product ,
-        isUser :true,
+        isUser : req.session.userId,
         validationError: req.flash('validationErrors')[0],
         isAdmin :req.session.isAdmin,
         pageTitle:'Product'

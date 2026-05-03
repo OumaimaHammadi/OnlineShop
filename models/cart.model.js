@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-//const DB_URL='mongodb://127.0.0.1:27017/online-shop'
+const DB_URL='mongodb://127.0.0.1:27017/online-shop'
 
-const DB_URL='mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net/'
+// const DB_URL='mongodb+srv://hammadiioumaima:2346789@onlineshopcluster.mujhabj.mongodb.net/'
 
 
 const cartSchema= mongoose.Schema({
