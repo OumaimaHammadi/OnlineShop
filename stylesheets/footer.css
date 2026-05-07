@@ -16,23 +16,19 @@ footer{
 
 footer  .footer-logo {
 
-     /* margin-bottom: 30px; */
-    /*font-weight: 300;
-    padding-top: 30px; */
-    font-size: 36px;
+
+    font-size:50px;
     font-weight: 550;
     padding-top: 30px;
 
     color: bisque;
     text-shadow: 0px 0px 1px  bisque;
 }
-/* .footer h1 span{
-    color:bisque;
-} */
+
 
 
 footer  .footer-logo span{
-margin-bottom: 30px;
+/* margin-bottom: 20px; */
  color:bisque;
 }
 
@@ -44,6 +40,9 @@ footer p{
     color: white;
 
 }
+.social-links{
+    margin-top: 20px;
+}
 .social-links i{
     padding: 10px;
     border-radius: 5px;
@@ -51,11 +50,9 @@ footer p{
     background: white;
     color: black;
     margin-left: 10px;
-    /* margin-bottom: 10px; */
     transition: 0.5s ease;
     cursor: pointer;
 }
 .social-links i:hover{
     background:blue;
 }
-/* Footer End */
